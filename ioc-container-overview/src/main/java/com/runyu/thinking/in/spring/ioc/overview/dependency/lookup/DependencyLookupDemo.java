@@ -25,6 +25,8 @@ public class DependencyLookupDemo {
         lookupByAnnotationType(beanFactory);
         lookupInRealTime(beanFactory);
         lookupInLazy(beanFactory);
+
+        //
     }
 
     private static void lookupByAnnotationType(BeanFactory beanFactory) {
