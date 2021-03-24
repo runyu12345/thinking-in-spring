@@ -3,6 +3,7 @@ package com.runyu.thinking.in.spring.ioc.overview.dependency.injection;
 import com.runyu.thinking.in.spring.ioc.overview.repository.UserRepository;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 
@@ -17,6 +18,8 @@ public class DependencyInjectionDemo {
         // 配置 XML 配置文件  objectFactory
         // 启动应用上下文
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("classpath:/META-INF/dependency-injection-context.xml");
+        //
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:/META-INF/dependency-injection-context.xml");
         // 自定义Bean
         UserRepository userRepository =  beanFactory.getBean(UserRepository.class);
         //System.out.println(userRepository.getUsers());
@@ -25,7 +28,6 @@ public class DependencyInjectionDemo {
         ObjectFactory objectFactory = userRepository.getObjectFactory();
         System.out.println(objectFactory.getObject() == beanFactory);
 
-        // System.out.println(userRepository.getBeanFactory() == beanFactory);
         //System.out.println(beanFactory.getBean(BeanFactory.class)); // 查找(错误代码)
 
         // 容器自建Bean
@@ -40,4 +42,11 @@ public class DependencyInjectionDemo {
          */
     }
 
+
+    private static void whoIsIoCContainer(UserRepository userRepository,BeanFactory beanFactory) {
+        // 这个表达式为什么不成立?
+        System.out.println(userRepository.getBeanFactory() == beanFactory);
+        // ApplicationContext is BeanFactory
+        // ApplicationContext is sub-interface of BeanFactory
+    }
 }
