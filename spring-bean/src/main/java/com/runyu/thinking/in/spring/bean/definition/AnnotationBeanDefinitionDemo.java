@@ -47,6 +47,8 @@ public class AnnotationBeanDefinitionDemo {
         System.out.println("Config :" + applicationContext.getBeansOfType(Config.class));
         System.out.println("User :" + applicationContext.getBeansOfType(User.class));
 
+        System.out.println(System.currentTimeMillis());
+
         // 显示的关闭 Spring 应用上下文
         applicationContext.close();
 
